@@ -5,8 +5,10 @@ from pathlib import Path
 try:
     from dotenv import load_dotenv
     load_dotenv()
-except ModuleNotFoundError:
-    pass
+except Exception as e:
+    print("load_dotenv is disabled as platform do not support importing package or the package 'python-dotenv' "
+          "is not installed")
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
