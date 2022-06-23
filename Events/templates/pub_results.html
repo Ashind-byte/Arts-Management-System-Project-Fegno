@@ -1,0 +1,33 @@
+{% extends 'adminlte/base.html' %}
+{% block content %}
+
+<br>
+<br>
+<br>
+<h1>Published Results!</h1>
+<div>
+<table class="table bg-primary ">
+  <thead>
+    <tr>
+      <th scope="col">Event Name</th>
+      <th scope="col">Participant Name</th>
+      <th scope="col">Position</th>
+      <th scope="col">Points</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for winner in winners  %}
+    <tr>
+      <td>{{winner.rid.event_name.event_name }}</td>
+      <td>{{winner.rid.user_id.first_name}}</td>
+      <td>{{winner.position}}</td>
+
+
+      <td>{{winner.points}}</td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

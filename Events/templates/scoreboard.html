@@ -1,0 +1,33 @@
+{%  extends 'adminlte/base.html' %}
+{% block content %}
+
+
+<div class="container bg-info">
+<table class="table">
+  <caption>List of House</caption>
+  <thead>
+    <tr>
+      <th scope="col">House</th>
+      <th scope="col">Points</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {%  for score in scores   %}
+  <tr>
+{% for values in score.values %}
+
+
+      <td>{{values}}</td>
+
+
+
+   {% endfor %}
+      </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+
+</div>
+{% endblock %}

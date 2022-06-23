@@ -1,0 +1,22 @@
+{%  extends 'adminlte/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 ">
+            <h2>Event Name: {{details.event_name}}</h2>
+            <h2>From: {{details.from_date}}</h2>
+            <h2>To: {{details.to_date}}</h2>
+            <h2>Venue: {{details.stage_name}}</h2>
+            <h2><strong>Registration closes at :</strong>  {{details.registration_closing_date.date}}
+            {{details.registration_closing_date.time}}</h2>
+            <form method="POST">
+                {% csrf_token %}
+            <input CLASS="btn btn-primary" TYPE="submit" value="Register">
+                </form>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

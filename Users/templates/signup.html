@@ -1,0 +1,10 @@
+{% extends 'adminlte/logout.html' %}
+
+{% block content %}
+  <h2>Sign up</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">Sign up</input>
+  </form>
+{% endblock %}

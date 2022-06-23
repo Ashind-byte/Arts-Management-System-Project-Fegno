@@ -1,0 +1,32 @@
+{% extends 'adminlte/lib/_main_sidebar.html' %}
+
+{% block nav_links %}
+    <li>
+        <a href="/">
+            <i class="fa fa-home"></i> <span>Dashboard</span>
+        </a>
+    </li>
+<li>
+        <a href="{% url 'ongoing-events' %}">
+            <i class="fa fa-hourglass-2"></i> <span>Ongoing Events</span>
+        </a>
+    </li>
+ <li>
+
+<li>
+        <a href="{% url 'upcoming-events' %}">
+            <i class="fa fa-calendar-plus-o"></i> <span>Upcoming Events</span>
+        </a>
+    </li>
+ <li>
+        <a href="/results">
+            <i class=" fa fa-bullhorn"></i> <span>Published Results</span>
+        </a>
+    </li>
+<li>
+        <a href="{% url 'score-board' %}">
+            <i class="fa fa-users"></i> <span>Scoreboard</span>
+        </a>
+    </li>
+{% endblock nav_links %}
+

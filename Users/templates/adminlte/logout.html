@@ -1,0 +1,24 @@
+{% extends "adminlte/login.html" %}
+
+{% block login_form %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="row">
+            <div class="col-xs-8">
+                <a href="/login">Back to Login</a>
+
+            </div>
+            <div class="col-xs-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+            </div>
+        </div>
+    </form>
+<script>
+    var nodes = document.querySelectorAll('input,select')
+    for (i=0;i<nodes.length; i++ ){
+        node = nodes[i]
+        node.classList.add('form-control')
+    }
+</script>
+{% endblock login_form %}
