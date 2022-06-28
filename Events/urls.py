@@ -8,6 +8,7 @@ urlpatterns = [
     path("ongoign_events", views.current_events, name="ongoing-events"),
     path("event_details/<int:pk>/", views.CurrentEventDetailView.as_view(), name='event-details'),
     path("scoreboard", views.scoreboard, name='score-board'),
+    path("registered",views.registered_events,name="registered-events"),
 ]
 
 

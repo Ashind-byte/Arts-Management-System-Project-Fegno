@@ -1,0 +1,30 @@
+{% extends 'adminlte/base.html' %}
+<title>{% block title %}Registered Events |{% endblock %}</title>
+{% block content %}
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Registered events name</th>
+        <th>From date-time</th>
+        <th>To date-time</th>
+        <th>Conflicting with Event</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in reg %}
+    <tr>
+        <th scope="row">{{ i.event_name }}</th>
+        <td>{{ i.event_name.from_date }}</td>
+        <td>{{ i.event_name.to_date }}</td>
+        <td>{{ i.conflits.0.event_name }}</td>
+
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+
+{% endblock %}

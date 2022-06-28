@@ -25,13 +25,7 @@ def upcoming_events(request):
     return render(request, 'upcoming_events.html', {"lists": lists})
 
 
-#
-# class CurrentEventListView(ListView):
-#     model = Event
-#     template_name = "ongoing-events.html"
-#
-#     def get_queryset(self):
-#         return Event.objects.all().filter(registration_closing_date=timezone.now())
+
 
 @login_required
 def current_events(request):
@@ -39,13 +33,6 @@ def current_events(request):
     return render(request, 'ongoing-events.html', {"events": ongoing_events})
 
 
-# @login_required
-# def current_event_details(request, **kwargs):
-#
-#     current_detail = get_object_or_404(Event.objects.all(), **kwargs)
-#
-#
-#     return render(request, 'upcoming_event_details.html', {"details": current_detail})
 
 @method_decorator(login_required, 'dispatch')
 class CurrentEventDetailView(DetailView):
@@ -69,3 +56,28 @@ def scoreboard(request):
 
 
     return render(request,'scoreboard.html', {"scores":score_lists})
+
+def check_for_conflict(first_event, other_event):
+    if first_event.from_date <  other_event.to_date and other_event.from_date < first_event.to_date:
+        return True
+    else:
+        return False
+
+def registered_events(request):
+
+    all_reg_events = list(Registration.objects.select_related('user_id', 'event_name').filter(user_id=request.user).order_by('event_name__from_date'))
+
+    conflict_directory = {}
+    for regn in all_reg_events:
+        conflict_directory[regn.id] = []
+        for other_regn in all_reg_events:
+            if other_regn.id != regn.id:
+                conflict = check_for_conflict(regn.event_name, other_regn.event_name)
+                if conflict:
+                    conflict_directory[regn.id].append(other_regn)
+                    #messages.warning(request, f'There is a conflict with {other_regn.event_name} and you have to contact the admin to change the registration details.')
+
+    for regn in all_reg_events:
+        regn.conflits = conflict_directory[regn.id]
+
+    return render(request, 'registered.html', {"reg": all_reg_events})
